@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.IInsuranceUserMapper">
+    <insert id="save" parameterType="com.po.Insurance">
+        insert into insurance_user(usercode,userpasspword,userType,userName,weChat,idnumber,creationDate,createdBy,modifyDate,modifiedBy,activated) values(#{usercode},#{userpasspword},#{userType},#{userName},#{weChat},#{idnumber},#{creationDate},#{createdBy},#{modifyDate},#{modifiedBy},#{activated})
+    </insert>
+    <select id="show" parameterType="java.lang.String" resultType="com.po.Insurance">
+       select *from insurance_user where usercode=#{usercode}
+    </select>
+    <update id="updateactivatied" parameterType="java.lang.String">
+        update insurance_user set activated=1 where usercode=#{usercode}
+    </update>
+
+</mapper>
