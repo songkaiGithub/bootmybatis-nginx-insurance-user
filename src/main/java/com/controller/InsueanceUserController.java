@@ -98,14 +98,16 @@ public class InsueanceUserController {
             if (isu.getActivated() == 0) {// 在但未激活
                 if (activated.equals(jedis.get(isu.getUsercode()))) {//激活成功
                        int code = iInsuranceUserService.updateactivatied(insuranceUserVo.getUserCode());
+                    //删除redis存储的验证码
+                    PhoneOrEmail.delete(insuranceUserVo);
                         return DtoUtil.returnSuccess("恭喜你激活成功");
                     } else {
-                    if (jedis.get(insuranceUserVo.getUserCode()) != null) {
-                        return DtoUtil.returnfail("激活失败,激活码错误,请重新输入验证码，", ErrorCode.AUTH_ACTIVATE_NULL);
-                    } else {
-                        PhoneOrEmail.chazhao(insuranceUserVo);
-                        return DtoUtil.returnfail("激活失败,激活码错误，已重新发送", ErrorCode.AUTH_ACTIVATE_NULL);
-                    }
+                        if (jedis.get(insuranceUserVo.getUserCode()) != null) {
+                            return DtoUtil.returnfail("激活失败,激活码错误,请重新输入验证码，", ErrorCode.AUTH_ACTIVATE_NULL);
+                        } else {
+                            PhoneOrEmail.chazhao(insuranceUserVo);
+                            return DtoUtil.returnfail("激活失败,激活码错误，已重新发送", ErrorCode.AUTH_ACTIVATE_NULL);
+                        }
                 }
                 } else {//返回激活
                     return DtoUtil.returnfail("激活失败用户存在已经激活",  ErrorCode.AUTH_ACTIVATE_FAILED);

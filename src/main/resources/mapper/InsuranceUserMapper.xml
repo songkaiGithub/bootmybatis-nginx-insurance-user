@@ -10,5 +10,8 @@
     <update id="updateactivatied" parameterType="java.lang.String">
         update insurance_user set activated=1 where usercode=#{usercode}
     </update>
+    <update id="updatepasswd" parameterType="com.po.Insurance">
+        update insurance_user set userpasspword=#{userpasspword},modifiedBy=#{modifiedBy},modifyDate=#{modifyDate} where usercode=#{usercode}
+    </update>
 
 </mapper>

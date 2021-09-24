@@ -11,4 +11,6 @@ public interface IInsuranceUserMapper {
     public Insurance show(String usercode);
     /**修改注册用户的激活状态*/
     public  int updateactivatied(String usercode);
+    /**修改注册用户的密码*/
+    public int updatepasswd(Insurance insurance);
 }

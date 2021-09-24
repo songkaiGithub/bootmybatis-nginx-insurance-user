@@ -19,4 +19,14 @@ public class PhoneOrEmail {
             jedis.setex(insuranceUserVo.getUserCode(),120,smadk);
         }
     }
+    public static void delete(InsuranceUserVo insuranceUserVo){
+        if(insuranceUserVo.getUserCode().indexOf("@")!=-1){//邮箱
+            System.out.println("邮箱注册");
+            //缓存验证码
+            jedis.del(insuranceUserVo.getUserCode());
+        }else{//手机号
+            System.out.println("手机号注册");
+            jedis.del(insuranceUserVo.getUserCode());
+        }
+    }
 }

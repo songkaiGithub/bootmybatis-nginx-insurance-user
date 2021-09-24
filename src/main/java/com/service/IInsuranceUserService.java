@@ -9,4 +9,6 @@ public interface IInsuranceUserService {
     public Insurance show(String insurance);
     /**修改注册用户的激活状态*/
     public  int updateactivatied(String usercode);
+    /**修改注册用户的密码*/
+    public int updatepasswd(Insurance insurance);
 }

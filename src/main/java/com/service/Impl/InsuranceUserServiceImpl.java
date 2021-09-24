@@ -28,4 +28,9 @@ public class InsuranceUserServiceImpl implements IInsuranceUserService {
     public int updateactivatied(String usercode) {
         return iInsuranceUserMapper.updateactivatied(usercode);
     }
+
+    @Override
+    public int updatepasswd(Insurance insurance) {
+        return iInsuranceUserMapper.updatepasswd(insurance);
+    }
 }
