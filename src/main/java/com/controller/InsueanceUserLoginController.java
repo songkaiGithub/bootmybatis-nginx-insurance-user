@@ -131,7 +131,7 @@ public class InsueanceUserLoginController {
         }else{
             return DtoUtil.returnfail("帐户名为空",ErrorCode.AUTH_ACTIVATE_ERRORFAILED);
         }
-        return DtoUtil.returnSuccess("发送成功");
+        return DtoUtil.returnSuccess("发送成功..............");
     }
     //退出登录的方法
     @RequestMapping(value = "/loginout")
